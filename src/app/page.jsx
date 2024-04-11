@@ -1,8 +1,13 @@
+
+export const metadata = {
+  title: 'Frontpage',
+  description: 'Description'
+}
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center">
+    <main className="bg-slate-100">
     <h1>Hello world</h1>
-    <p><a href="/henry">Go to the api </a></p>
     </main>
   );
 }
