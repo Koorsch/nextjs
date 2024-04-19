@@ -1,16 +1,26 @@
 import Link from 'next/link';
-export default function Header() {
+
+export default async function Header() {
+  const url = "https://nice-dogs.vercel.app/api/dogs"
+  const res = await fetch(url);
+  const dogs = await res.json();
+
   return (
     <header className="flex gap-5 bg-slate-400">
       <h1>Welcome to the page</h1>
       <nav className="text-white flex">
           <ul className="flex gap-2 ">
-            <li>
-              <Link href={"/"} prefetch={false}>Home</Link>
-            </li>
-            <li>
-              <Link href={"/henry"} prefetch={false}>Henry</Link>
-            </li>
+            <Link href={`/`}>Home</Link>
+                {
+                  dogs.map((dog) => {
+                    const {name, slug} = dog;
+                    return (
+                    <li key={slug}>
+                      <Link href={`/${slug}`} prefetch={false}>{name}</Link>
+                    </li>
+                    )
+                  })
+                }
           </ul>
       </nav>
     </header>
